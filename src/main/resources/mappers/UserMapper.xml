@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.Attendance.Mapper.UsersMapper">
+    <select id="getUserById" resultType="com.web.Attendance.Entity.Users" parameterType="java.lang.String">
+        select *
+        FROM Users
+        where id = #{id}
+    </select>
+
+    <insert id="addUser" parameterType="com.web.Attendance.Entity.Users">
+        INSERT
+        INTO Users
+        (id, name, age, telephone, role, password)
+        VALUES
+        (#{id}, #{name}, #{age}, #{telephone}, #{role}, #{password})
+    </insert>
+
+    <delete id="deleteUserById" parameterType="java.lang.String">
+        DELETE
+        FROM Users
+        WHERE
+        id = #{id}
+    </delete>
+
+    <update id="updateUserInfoById" parameterType="com.web.Attendance.Entity.Users">
+        UPDATE Users
+        SET
+        name = #{name}, age = #{age}, telephone = #{telephone}, role = #{role}, password = #{password}
+        WHERE
+        id = #{id}
+    </update>
+</mapper>

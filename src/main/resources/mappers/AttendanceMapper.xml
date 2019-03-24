@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.Attendance.Mapper.AttendanceMapper">
+    <select id="getAttendanceById" resultType="com.web.Attendance.Entity.Attendance" parameterType="java.lang.String">
+        select *
+        FROM attendance
+        user_id = #{user_id}
+    </select>
+
+    <select id="getAllAttendanceByDate" resultType="com.web.Attendance.Entity.Attendance" parameterType="java.lang.String">
+        select *
+        FROM attendance
+        attendance_date = #{attendance_date}
+    </select>
+
+    <insert id="addAttendance" parameterType="com.web.Attendance.Entity.Attendance">
+        INSERT
+        INTO attendance
+        (user_id, user_name, attendance_statue, attendance_date, attendance_time, reject_user_id, reject_content)
+        VALUES
+        (#{user_id}, #{user_name}, #{attendance_statue}, #{attendance_date}, #{attendance_time}, #{reject_user_id}, #{reject_content})
+    </insert>
+
+    <update id="updateUserInfoById" parameterType="com.web.Attendance.Entity.Attendance">
+        UPDATE attendance
+        SET
+        attendance_status = #{attendance_status}
+        WHERE
+        id = #{id}
+    </update>
+</mapper>

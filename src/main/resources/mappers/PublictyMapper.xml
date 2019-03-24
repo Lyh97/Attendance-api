@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.Attendance.Mapper.PublictyMapper">
+    <select id="getPublicty" resultType="com.web.Attendance.Entity.Publicty">
+        select *
+        FROM publicty
+    </select>
+
+    <insert id="addPublictyInfo" parameterType="com.web.Attendance.Entity.Publicty">
+        INSERT
+        INTO publicty
+        (title, author_name, author_id, content, issue_date)
+        VALUES
+        (#{title}, #{author_name}, #{author_id}, #{content}, #{issue_date})
+    </insert>
+
+    <delete id="deletePublictyById" parameterType="java.lang.String">
+        DELETE
+        FROM publicty
+        WHERE
+        id = #{id}
+    </delete>
+
+    <update id="updatePublictyById" parameterType="com.web.Attendance.Entity.Publicty">
+        UPDATE publicty
+        SET
+        title = #{title}, author_name = #{author_name}, author_id = #{author_id}, content = #{content}, issue_date = #{issue_date}
+        WHERE
+        id = #{id}
+    </update>
+</mapper>
