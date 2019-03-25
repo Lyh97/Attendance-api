@@ -6,6 +6,13 @@
         FROM publicty
     </select>
 
+    <select id="getPublictyById" parameterType="java.lang.Integer" resultType="com.web.Attendance.Entity.Publicty">
+        select *
+        FROM publicty
+        WHERE
+        id = #{id}
+    </select>
+
     <insert id="addPublictyInfo" parameterType="com.web.Attendance.Entity.Publicty">
         INSERT
         INTO publicty
@@ -14,7 +21,7 @@
         (#{title}, #{author_name}, #{author_id}, #{content}, #{issue_date})
     </insert>
 
-    <delete id="deletePublictyById" parameterType="java.lang.String">
+    <delete id="deletePublictyById" parameterType="java.lang.Integer">
         DELETE
         FROM publicty
         WHERE

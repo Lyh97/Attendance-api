@@ -31,15 +31,20 @@ public class LoginController {
         Users user = service.login(userName);
 
         Map<String, Object> result = new HashMap();
-        if(user.getPassword()!= null && !user.getPassword().equals("")) {
-            if(user.getPassword().equals(md5.encodeByMd5(password)))
-            result.put("status", 200);
-            result.put("message", "登陆成功");
-            result.put("date", user);
+        if(user != null) {
+            if(user.getPassword().equals(md5.encodeByMd5(password))) {
+                result.put("status", 200);
+                result.put("message", "登陆成功");
+                result.put("data", user);
+            } else {
+                result.put("status", 301);
+                result.put("message", "密码错误");
+                result.put("data", "");
+            }
         } else {
-            result.put("status", 301);
-            result.put("message", "登陆失败");
-            result.put("date", "");
+            result.put("status", 302);
+            result.put("message", "无此用户");
+            result.put("data", "");
         }
 
         return result;

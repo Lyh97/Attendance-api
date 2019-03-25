@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.web.Attendance.Mapper.UsersMapper">
-    <select id="getUserById" resultType="com.web.Attendance.Entity.Users" parameterType="java.lang.String">
+    <select id="getUserInfoById" resultType="com.web.Attendance.Entity.Users" parameterType="java.lang.Integer">
         select *
         FROM Users
-        where id = #{id}
+        WHERE id = #{id}
+    </select>
+
+    <select id="getAllUserInfo" resultType="com.web.Attendance.Entity.Users">
+        SELECT *
+        FROM Users
+        WHERE role = 0
     </select>
 
     <insert id="addUser" parameterType="com.web.Attendance.Entity.Users">
@@ -15,7 +21,7 @@
         (#{id}, #{name}, #{age}, #{telephone}, #{role}, #{password})
     </insert>
 
-    <delete id="deleteUserById" parameterType="java.lang.String">
+    <delete id="deleteUserInfoById" parameterType="java.lang.Integer">
         DELETE
         FROM Users
         WHERE
@@ -25,7 +31,7 @@
     <update id="updateUserInfoById" parameterType="com.web.Attendance.Entity.Users">
         UPDATE Users
         SET
-        name = #{name}, age = #{age}, telephone = #{telephone}, role = #{role}, password = #{password}
+        name = #{name}, age = #{age}, telephone = #{telephone}, role = #{role}
         WHERE
         id = #{id}
     </update>
