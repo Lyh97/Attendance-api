@@ -15,4 +15,6 @@ public interface AttendanceMapper {
     void updateAttendanceStatusById(Map<String, Object> temp);
 
     Attendance getAttInfoById(Integer id);
+
+    List<Attendance> getAttendanceByIdAndDate(Map<String, Object> attInfo);
 }

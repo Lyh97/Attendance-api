@@ -23,6 +23,13 @@
         attendance_date = #{attendance_date}
     </select>
 
+    <select id="getAttendanceByIdAndDate" resultType="com.web.Attendance.Entity.Attendance" parameterType="java.util.HashMap">
+        select *
+        FROM attendance
+        WHERE
+        attendance_date = #{attendance_date} AND user_id = #{user_id}
+    </select>
+
     <insert id="addAttendance" parameterType="com.web.Attendance.Entity.Attendance">
         INSERT
         INTO attendance

@@ -41,11 +41,21 @@ public class AttendanceController {
         attInfo.setAttendance_time(time.format(new Date()));
         attInfo.setAttendance_status("success");
 
-        attservice.addAttendance(attInfo);
+        Map<String, Object> map = new HashMap<>();
 
-        result.put("status", 200);
-        result.put("message", "签到成功");
+        map.put("user_id", id);
+        map.put("attendance_date", date.format(new Date()));
 
+        if(attservice.getAttendanceByIdAndDate(map).size() == 0) {
+            attservice.addAttendance(attInfo);
+
+            result.put("status", 200);
+            result.put("message", "签到成功");
+            return result;
+        }
+
+        result.put("status", 301);
+        result.put("message", "已签到");
         return result;
     }
 
@@ -100,5 +110,28 @@ public class AttendanceController {
         return result;
     }
 
+    @RequestMapping(value = "/getAttendanceByIdAndDate", method = GET)
+    public Map<String, Object> getAttendanceByIdAndDate(@RequestParam Integer id) {
+        Map<String, Object> result = new HashMap();
+
+        Map<String, Object> map = new HashMap<>();
+
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+
+        map.put("user_id", id);
+        map.put("attendance_date", date.format(new Date()));
+
+        List<Attendance> attendanceInfo = attservice.getAttendanceByIdAndDate(map);
+        if(attendanceInfo.size() != 0) {
+            result.put("status", 301);
+            result.put("message", "已签到");
+            result.put("data", attendanceInfo);
+            return result;
+        }
+
+        result.put("status", 200);
+        result.put("message", "未签到");
+        return result;
+    }
 
 }

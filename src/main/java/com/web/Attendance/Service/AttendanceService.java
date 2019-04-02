@@ -33,4 +33,8 @@ public class AttendanceService {
     public Attendance getAttInfoById(Integer id) {
         return mapper.getAttInfoById(id);
     }
+
+    public List<Attendance> getAttendanceByIdAndDate(Map<String, Object> attInfo) {
+        return mapper.getAttendanceByIdAndDate(attInfo);
+    }
 }
