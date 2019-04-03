@@ -10,7 +10,7 @@
     <select id="getAllUserInfo" resultType="com.web.Attendance.Entity.Users">
         SELECT *
         FROM Users
-        WHERE role = 0
+        <!--WHERE role = 0-->
     </select>
 
     <insert id="addUser" parameterType="com.web.Attendance.Entity.Users">

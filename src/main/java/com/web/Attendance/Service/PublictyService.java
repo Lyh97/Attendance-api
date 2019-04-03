@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class PublictyService {
@@ -30,5 +31,13 @@ public class PublictyService {
 
     public void updatePublictyById(Publicty publicty) {
         mapper.updatePublictyById(publicty);
+    }
+
+    public List<Publicty> getPublictyInfoById(String userId) {
+        return mapper.getPublictyInfoById(userId);
+    }
+
+    public void updatePublictyStatusById(Map<String, Object> map) {
+        mapper.updatePublictyStatusById(map);
     }
 }

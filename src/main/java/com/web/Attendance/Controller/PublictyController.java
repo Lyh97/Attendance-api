@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -79,19 +80,71 @@ public class PublictyController {
             return result;
         }
 
-        publictyservice.updatePublictyById(publicty);
+        try {
+            publictyservice.updatePublictyById(publicty);
+        } catch( Exception e ) {
+            result.put("status", 301);
+            result.put("message", e.getMessage().toString());
 
+            return result;
+        }
         result.put("status", 200);
         result.put("message", "公示修改成功");
 
         return result;
     }
 
+    @RequestMapping(value = "/updatePublictyStatusById", method = GET)
+    public JSONObject updatePublictyStatus(@RequestParam int id, @RequestParam int status) {
+        JSONObject result = new JSONObject();
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("id", id);
+        map.put("status", status);
+
+        try {
+            publictyservice.updatePublictyStatusById(map);
+        } catch(Exception e) {
+            result.put("status", 301);
+            result.put("message", e.getMessage().toString());
+
+            return result;
+        }
+
+        result.put("status", 200);
+        result.put("message", "状态修改成功");
+
+        return result;
+
+    }
+
+
+
     @RequestMapping(value = "/getPublicty", method = GET)
     public JSONObject getPublicty() {
         JSONObject result = new JSONObject();
 
         List<Publicty> list = publictyservice.getPublicty();
+
+        result.put("status", 200);
+        result.put("message", "所有公示信息");
+        result.put("data", list);
+
+        return result;
+    }
+
+    @RequestMapping(value = "/getPublictyInfoById", method = GET)
+    public JSONObject getPublictyInfoById(@RequestParam String userId) {
+        JSONObject result = new JSONObject();
+
+        if(userId.equals("") || userId == null) {
+            result.put("status", 301);
+            result.put("message", "无用户ID");
+            result.put("data", "");
+
+            return result;
+        }
+        List<Publicty> list = publictyservice.getPublictyInfoById(userId);
 
         result.put("status", 200);
         result.put("message", "所有公示信息");

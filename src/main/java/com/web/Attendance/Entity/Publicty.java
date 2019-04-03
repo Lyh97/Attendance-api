@@ -7,6 +7,7 @@ public class Publicty {
     public String content;
     public String issue_date;
     public int author_id;
+    public int status;
 
     public int getId() {
         return id;
@@ -54,5 +55,13 @@ public class Publicty {
 
     public void setAuthor_id(int author_id) {
         this.author_id = author_id;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }
