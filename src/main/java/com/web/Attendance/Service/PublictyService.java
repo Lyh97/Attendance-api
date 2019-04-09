@@ -1,5 +1,6 @@
 package com.web.Attendance.Service;
 
+import com.web.Attendance.Entity.Comment;
 import com.web.Attendance.Entity.Publicty;
 import com.web.Attendance.Mapper.PublictyMapper;
 import org.springframework.stereotype.Service;
@@ -39,5 +40,13 @@ public class PublictyService {
 
     public void updatePublictyStatusById(Map<String, Object> map) {
         mapper.updatePublictyStatusById(map);
+    }
+
+    public void addCommentByPublictyId(Comment info) {
+        mapper.addCommentByPublictyId(info);
+    }
+
+    public List<Comment> getCommentByPublictyId(Integer publictyId) {
+        return mapper.getCommentByPublictyId(publictyId);
     }
 }

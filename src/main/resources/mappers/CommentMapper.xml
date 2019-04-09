@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.Attendance.Mapper.PublictyMapper">
+    <!--通过签到表id查询签到信息-->
+    <select id="getCommentByPublictyId" parameterType="java.lang.Integer" resultType="com.web.Attendance.Entity.Comment">
+        SELECT *
+        FROM comment
+        WHERE
+        publictyId = #{publictyId}
+        ORDER BY datetime DESC
+    </select>
+    <insert id="addCommentByPublictyId" parameterType="com.web.Attendance.Entity.Comment">
+        INSERT
+        INTO comment
+        (publictyId, userId, author, avatar, content, datetime)
+        VALUES
+        (#{publicId}, #{userId}, #{author}, #{avatar}, #{content}, #{datetime})
+    </insert>
+</mapper>

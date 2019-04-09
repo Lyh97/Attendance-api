@@ -1,5 +1,6 @@
 package com.web.Attendance.Mapper;
 
+import com.web.Attendance.Entity.Comment;
 import com.web.Attendance.Entity.Publicty;
 
 import java.util.List;
@@ -19,4 +20,8 @@ public interface PublictyMapper {
     List<Publicty> getPublictyInfoById(String userId);
 
     void updatePublictyStatusById(Map<String, Object> map);
+
+    void addCommentByPublictyId(Comment info);
+
+    List<Comment> getCommentByPublictyId(Integer publictyId);
 }
